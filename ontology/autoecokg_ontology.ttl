@@ -1,0 +1,351 @@
+@prefix aek: <https://w3id.org/autoecokg/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+aek:AutoEcoKG a owl:Ontology ;
+    rdfs:label "AutoEcoKG automotive environmental ontology" .
+
+aek:TyreObservation a owl:Class ;
+    rdfs:comment "An independent tyre test observation."@en ;
+    rdfs:subClassOf sosa:Observation .
+
+aek:VehicleObservation a owl:Class ;
+    rdfs:comment "A vehicle measurement or declared specification with its source context."@en ;
+    rdfs:subClassOf sosa:Observation .
+
+aek:abrasion_grade a aek:MeasurementProperty ;
+    rdfs:label "abrasion grade" .
+
+aek:abrasion_mg_km_t a aek:MeasurementProperty ;
+    rdfs:label "abrasion mg km t" .
+
+aek:acceleration_0_100_s a aek:MeasurementProperty ;
+    rdfs:label "acceleration 0 100 s" .
+
+aek:adacGrade a aek:MeasurementUnit ;
+    rdfs:label "ADAC grade (lower is better)" .
+
+aek:adac_electric_kwh_100km a aek:MeasurementProperty ;
+    rdfs:label "adac electric kwh 100km" .
+
+aek:adac_fuel_l_100km a aek:MeasurementProperty ;
+    rdfs:label "adac fuel l 100km" .
+
+aek:adac_reported_co2_g_km a aek:MeasurementProperty ;
+    rdfs:label "adac reported co2 g km" .
+
+aek:adac_wtw_co2_g_km a aek:MeasurementProperty ;
+    rdfs:label "adac wtw co2 g km" .
+
+aek:aliasSourceTyre a owl:ObjectProperty ;
+    rdfs:domain aek:TyreAliasCandidate ;
+    rdfs:range aek:TyreVariant .
+
+aek:aliasTargetTyre a owl:ObjectProperty ;
+    rdfs:domain aek:TyreAliasCandidate ;
+    rdfs:range aek:TyreVariant .
+
+aek:aquaplaning_lateral_grade a aek:MeasurementProperty ;
+    rdfs:label "aquaplaning lateral grade" .
+
+aek:aquaplaning_longitudinal_grade a aek:MeasurementProperty ;
+    rdfs:label "aquaplaning longitudinal grade" .
+
+aek:autobahn_electric_kwh_100km a aek:MeasurementProperty ;
+    rdfs:label "autobahn electric kwh 100km" .
+
+aek:autobahn_fuel_l_100km a aek:MeasurementProperty ;
+    rdfs:label "autobahn fuel l 100km" .
+
+aek:braking_distance_m a aek:MeasurementProperty ;
+    rdfs:label "braking distance m" .
+
+aek:candidateTyre a owl:ObjectProperty ;
+    rdfs:domain aek:AlignmentCandidate ;
+    rdfs:range aek:TyreVariant .
+
+aek:candidateVehicle a owl:ObjectProperty ;
+    rdfs:domain aek:AlignmentCandidate ;
+    rdfs:range aek:VehicleVariant .
+
+aek:city_electric_kwh_100km a aek:MeasurementProperty ;
+    rdfs:label "city electric kwh 100km" .
+
+aek:city_fuel_l_100km a aek:MeasurementProperty ;
+    rdfs:label "city fuel l 100km" .
+
+aek:comfort_grade a aek:MeasurementProperty ;
+    rdfs:label "comfort grade" .
+
+aek:cubicCentimetre a aek:MeasurementUnit ;
+    rdfs:label "cm³" .
+
+aek:decibel a aek:MeasurementUnit ;
+    rdfs:label "dB" .
+
+aek:dimensionless a aek:MeasurementUnit ;
+    rdfs:label "dimensionless" .
+
+aek:dry_braking_grade a aek:MeasurementProperty ;
+    rdfs:label "dry braking grade" .
+
+aek:dry_grade a aek:MeasurementProperty ;
+    rdfs:label "dry grade" .
+
+aek:efficiency_grade a aek:MeasurementProperty ;
+    rdfs:label "efficiency grade" .
+
+aek:electric_kwh_100km_gap_pct a aek:MeasurementProperty ;
+    rdfs:label "electric kwh 100km gap pct" .
+
+aek:engine_capacity_cc a aek:MeasurementProperty ;
+    rdfs:label "engine capacity cc" .
+
+aek:environment_grade a aek:MeasurementProperty ;
+    rdfs:label "environment grade" .
+
+aek:estimated_unece_index a aek:MeasurementProperty ;
+    rdfs:label "estimated unece index" .
+
+aek:eu_external_noise_db a aek:MeasurementProperty ;
+    rdfs:label "eu external noise db" .
+
+aek:eu_fuel_efficiency_class a aek:MeasurementProperty ;
+    rdfs:label "eu fuel efficiency class" .
+
+aek:eu_wet_grip_class a aek:MeasurementProperty ;
+    rdfs:label "eu wet grip class" .
+
+aek:exterior_noise_grade a aek:MeasurementProperty ;
+    rdfs:label "exterior noise grade" .
+
+aek:fitmentVerified a owl:DatatypeProperty ;
+    rdfs:domain aek:AlignmentCandidate ;
+    rdfs:range xsd:boolean .
+
+aek:fuel_consumption_grade a aek:MeasurementProperty ;
+    rdfs:label "fuel consumption grade" .
+
+aek:fuel_l_100km_gap_pct a aek:MeasurementProperty ;
+    rdfs:label "fuel l 100km gap pct" .
+
+aek:gramsPerKm a aek:MeasurementUnit ;
+    rdfs:label "g/km" .
+
+aek:identityVerified a owl:DatatypeProperty ;
+    rdfs:domain aek:AlignmentCandidate ;
+    rdfs:range xsd:boolean .
+
+aek:interior_noise_db a aek:MeasurementProperty ;
+    rdfs:label "interior noise db" .
+
+aek:interior_noise_grade a aek:MeasurementProperty ;
+    rdfs:label "interior noise grade" .
+
+aek:kg a aek:MeasurementUnit ;
+    rdfs:label "kg" .
+
+aek:km a aek:MeasurementUnit ;
+    rdfs:label "km" .
+
+aek:kmPerHour a aek:MeasurementUnit ;
+    rdfs:label "km/h" .
+
+aek:kw a aek:MeasurementUnit ;
+    rdfs:label "kW" .
+
+aek:kwhPer100Km a aek:MeasurementUnit ;
+    rdfs:label "kWh/100 km" .
+
+aek:lateral_grip_grade a aek:MeasurementProperty ;
+    rdfs:label "lateral grip grade" .
+
+aek:limit_handling_grade a aek:MeasurementProperty ;
+    rdfs:label "limit handling grade" .
+
+aek:litresPer100Km a aek:MeasurementUnit ;
+    rdfs:label "L/100 km" .
+
+aek:manufacturer_weight_kg a aek:MeasurementProperty ;
+    rdfs:label "manufacturer weight kg" .
+
+aek:matchType a owl:DatatypeProperty ;
+    rdfs:domain aek:AlignmentCandidate ;
+    rdfs:range xsd:string .
+
+aek:max_speed_kmh a aek:MeasurementProperty ;
+    rdfs:label "max speed kmh" .
+
+aek:measurementContext a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aek:measurementProperty a owl:ObjectProperty ;
+    rdfs:range aek:MeasurementProperty .
+
+aek:measurementUnit a owl:ObjectProperty ;
+    rdfs:range aek:MeasurementUnit .
+
+aek:metre a aek:MeasurementUnit ;
+    rdfs:label "m" .
+
+aek:mgPerKmPerTonne a aek:MeasurementUnit ;
+    rdfs:label "mg/km/t" .
+
+aek:mileage_grade a aek:MeasurementProperty ;
+    rdfs:label "mileage grade" .
+
+aek:nm a aek:MeasurementUnit ;
+    rdfs:label "Nm" .
+
+aek:noise_grade a aek:MeasurementProperty ;
+    rdfs:label "noise grade" .
+
+aek:numericValue a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+aek:overall_grade a aek:MeasurementProperty ;
+    rdfs:label "overall grade" .
+
+aek:percent a aek:MeasurementUnit ;
+    rdfs:label "%" .
+
+aek:power_kw a aek:MeasurementProperty ;
+    rdfs:label "power kw" .
+
+aek:power_ps a aek:MeasurementProperty ;
+    rdfs:label "power ps" .
+
+aek:powertrain a owl:DatatypeProperty ;
+    rdfs:domain aek:VehicleVariant ;
+    rdfs:range xsd:string .
+
+aek:ps a aek:MeasurementUnit ;
+    rdfs:label "PS" .
+
+aek:range_km a aek:MeasurementProperty ;
+    rdfs:label "range km" .
+
+aek:recordId a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aek:reviewStatus a owl:DatatypeProperty ;
+    rdfs:domain aek:TyreAliasCandidate ;
+    rdfs:range xsd:string .
+
+aek:rural_electric_kwh_100km a aek:MeasurementProperty ;
+    rdfs:label "rural electric kwh 100km" .
+
+aek:rural_fuel_l_100km a aek:MeasurementProperty ;
+    rdfs:label "rural fuel l 100km" .
+
+aek:safety_grade a aek:MeasurementProperty ;
+    rdfs:label "safety grade" .
+
+aek:seasonCategory a owl:DatatypeProperty ;
+    rdfs:domain aek:TyreVariant ;
+    rdfs:range xsd:string .
+
+aek:second a aek:MeasurementUnit ;
+    rdfs:label "s" .
+
+aek:sourceEvidence a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aek:sourceFilename a owl:DatatypeProperty ;
+    rdfs:domain aek:SourceDocument ;
+    rdfs:range xsd:string .
+
+aek:sourceLine a owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+
+aek:sourcePage a owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+
+aek:suspension_comfort_grade a aek:MeasurementProperty ;
+    rdfs:label "suspension comfort grade" .
+
+aek:sustainability_grade a aek:MeasurementProperty ;
+    rdfs:label "sustainability grade" .
+
+aek:testPeriod a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aek:testProtocol a owl:ObjectProperty ;
+    rdfs:range aek:TestProtocol .
+
+aek:testYear a owl:DatatypeProperty ;
+    rdfs:range xsd:gYear .
+
+aek:testedTyreName a owl:DatatypeProperty ;
+    rdfs:domain aek:VehicleVariant ;
+    rdfs:range xsd:string .
+
+aek:testedTyreSize a owl:DatatypeProperty ;
+    rdfs:domain aek:VehicleVariant ;
+    rdfs:range xsd:string .
+
+aek:tested_weight_kg a aek:MeasurementProperty ;
+    rdfs:label "tested weight kg" .
+
+aek:textValue a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aek:torque_nm a aek:MeasurementProperty ;
+    rdfs:label "torque nm" .
+
+aek:tyreSize a owl:DatatypeProperty ;
+    rdfs:domain aek:TyreVariant ;
+    rdfs:range xsd:string .
+
+aek:weight_grade a aek:MeasurementProperty ;
+    rdfs:label "weight grade" .
+
+aek:wet_braking_grade a aek:MeasurementProperty ;
+    rdfs:label "wet braking grade" .
+
+aek:wet_grade a aek:MeasurementProperty ;
+    rdfs:label "wet grade" .
+
+aek:wet_handling_grade a aek:MeasurementProperty ;
+    rdfs:label "wet handling grade" .
+
+aek:wltp_co2_g_km a aek:MeasurementProperty ;
+    rdfs:label "wltp co2 g km" .
+
+aek:wltp_electric_kwh_100km a aek:MeasurementProperty ;
+    rdfs:label "wltp electric kwh 100km" .
+
+aek:wltp_fuel_l_100km a aek:MeasurementProperty ;
+    rdfs:label "wltp fuel l 100km" .
+
+aek:SourceDocument a owl:Class ;
+    rdfs:comment "A document from which evidence was extracted."@en ;
+    rdfs:subClassOf prov:Entity .
+
+aek:TestProtocol a owl:Class ;
+    rdfs:comment "A documented testing methodology."@en .
+
+aek:TyreAliasCandidate a owl:Class ;
+    rdfs:comment "An unresolved cross-source tyre identity candidate."@en .
+
+aek:VehicleVariant a owl:Class ;
+    rdfs:comment "A vehicle configuration represented by an ADAC report."@en ;
+    rdfs:subClassOf sosa:FeatureOfInterest .
+
+aek:AlignmentCandidate a owl:Class ;
+    rdfs:comment "A proposed vehicle-to-tyre relationship, not a fitment assertion."@en,
+        "Model-only, dimension-only and model-and-size matches must not imply owl:sameAs or certified fitment."@en .
+
+aek:TyreVariant a owl:Class ;
+    rdfs:comment "A provisional tyre model, size and category key, not necessarily a fully identified commercial SKU."@en ;
+    rdfs:subClassOf sosa:FeatureOfInterest .
+
+aek:MeasurementUnit a owl:Class ;
+    rdfs:comment "A unit or grade scale."@en .
+
+aek:MeasurementProperty a owl:Class ;
+    rdfs:comment "A measured or declared characteristic."@en .
+
