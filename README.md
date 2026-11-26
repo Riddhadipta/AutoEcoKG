@@ -148,7 +148,13 @@ Only the two summer cohorts have detailed safety grades in this snapshot. The gr
 
 ![AutoEcoKG System Architecture](visualizations/system_architecture.svg)
 
-The graph is generated locally as Turtle, queried in memory with RDFLib, and inspected in Protégé. The dashboard uses graph-backed data for exploration and recommendation, plus local CSV reports for validation and benchmark displays. SHACL validation is a separate command; users should run it before relying on a newly generated graph. No external graph database, LLM API, embedding service or hosted backend is necessary.
+AutoEcoKG generates a provenance-aware RDF/OWL Knowledge Graph locally in Turtle format, supports in-memory SPARQL query execution through RDFLib, and enables semantic inspection using Protégé.
+
+The Streamlit V2 dashboard provides interactive vehicle comparisons, multi-hop vehicle–tyre exploration, multi-criteria tyre recommendations, Pareto analysis and template-based knowledge graph question answering.
+
+Data integrity is assessed through SHACL constraints, Python-based validation and 37 automated benchmark tests. Validation and benchmark reports are generated locally and displayed within the dashboard.
+
+The system operates entirely locally, without requiring an external graph database, LLM API, embedding service or hosted backend.
 
 ## Technology stack
 
