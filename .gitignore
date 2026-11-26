@@ -221,3 +221,51 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ==========================================
+# AutoEcoKG Project Specific
+# ==========================================
+
+# Original third-party datasets
+/data/raw/
+
+# Extracted PDF text and intermediate data
+/data/intermediate/
+
+# Processed datasets
+/data/processed/
+
+# Generated knowledge graph
+/data/autoecokg_triples.ttl
+
+# VS Code local settings
+.vscode/
+
+# Local database files
+*.db
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# AutoEcoKG datasets
+/data/**
+!/data/raw/
+!/data/raw/adac/
+!/data/raw/tyres/
+!/data/raw/eea/
+!/data/raw/tuv/
+!/data/raw/methodology/
+!/data/intermediate/
+!/data/processed/
+!/data/**/.gitkeep
+
+# Data-bearing evaluation exports
+/evaluation/**
+!/evaluation/.gitkeep
+
+# Local environments
+.venv/
+.vscode/
+.env
+.streamlit/secrets.toml
