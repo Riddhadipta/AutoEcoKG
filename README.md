@@ -147,28 +147,28 @@ Only the two summer cohorts have detailed safety grades in this snapshot. The gr
 ## System architecture
 
 ```mermaid
-flowchart TD
-    A[ADAC vehicle PDFs] --> B[PDF text extraction]
-    B --> C[Vehicle parsing and provenance]
-    D[ADAC tyre PDFs] --> E[Tyre table extraction]
-    E --> F[Tyre normalization and alias candidates]
-    C --> G[Vehicle CSV validation]
-    F --> H[Tyre CSV validation]
-    G --> I[Entity alignment]
+graph TD
+    A["ADAC Vehicle PDFs"] --> B["PDF Text Extraction"]
+    B --> C["Vehicle Parsing and Provenance"]
+    D["ADAC Tyre PDFs"] --> E["Tyre Table Extraction"]
+    E --> F["Tyre Normalization"]
+    C --> G["Vehicle CSV Validation"]
+    F --> H["Tyre CSV Validation"]
+    G --> I["Entity Alignment"]
     H --> I
-    I --> J[RDFLib graph generation]
-    O[OWL ontology] --> J
-    J --> K[SHACL and Python integrity validation]
-    S[SHACL shapes] --> K
-    J --> L[SPARQL engine]
-    L --> M[Weighted ranking and Pareto analysis]
-    L --> N[Benchmark evaluation]
+    I --> J["RDF Knowledge Graph"]
+    O["OWL Ontology"] --> J
+    J --> K["SHACL Validation"]
+    S["SHACL Shapes"] --> K
+    J --> L["SPARQL Engine"]
+    L --> M["Recommendation Engine"]
+    L --> N["Benchmark Evaluation"]
     M --> N
     G --> N
     H --> N
-    L --> U[Streamlit V2]
+    J --> U["Streamlit Dashboard V2"]
+    L --> U
     M --> U
-    J --> U
     K --> U
     N --> U
 ```
