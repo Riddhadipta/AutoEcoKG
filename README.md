@@ -146,32 +146,7 @@ Only the two summer cohorts have detailed safety grades in this snapshot. The gr
 
 ## System architecture
 
-```mermaid
-graph TD
-    A["ADAC Vehicle PDFs"] --> B["PDF Text Extraction"]
-    B --> C["Vehicle Parsing and Provenance"]
-    D["ADAC Tyre PDFs"] --> E["Tyre Table Extraction"]
-    E --> F["Tyre Normalization"]
-    C --> G["Vehicle CSV Validation"]
-    F --> H["Tyre CSV Validation"]
-    G --> I["Entity Alignment"]
-    H --> I
-    I --> J["RDF Knowledge Graph"]
-    O["OWL Ontology"] --> J
-    J --> K["SHACL Validation"]
-    S["SHACL Shapes"] --> K
-    J --> L["SPARQL Engine"]
-    L --> M["Recommendation Engine"]
-    L --> N["Benchmark Evaluation"]
-    M --> N
-    G --> N
-    H --> N
-    J --> U["Streamlit Dashboard V2"]
-    L --> U
-    M --> U
-    K --> U
-    N --> U
-```
+![AutoEcoKG System Architecture](visualizations/system_architecture.svg)
 
 The graph is generated locally as Turtle, queried in memory with RDFLib, and inspected in Protégé. The dashboard uses graph-backed data for exploration and recommendation, plus local CSV reports for validation and benchmark displays. SHACL validation is a separate command; users should run it before relying on a newly generated graph. No external graph database, LLM API, embedding service or hosted backend is necessary.
 
