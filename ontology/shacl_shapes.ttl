@@ -1,0 +1,54 @@
+@prefix aek: <https://w3id.org/autoecokg/ontology#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Constraints for the AutoEcoKG v1 graph; absent optional measurements are allowed.
+aek:IdentifiedShape a sh:NodeShape ;
+ sh:targetClass aek:VehicleVariant, aek:TyreVariant, aek:VehicleObservation, aek:TyreObservation, aek:TyreSourceRecord, aek:AlignmentCandidate, aek:TyreAliasCandidate, aek:SourceDocument, aek:TestProtocol ;
+ sh:property [ sh:path aek:recordId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] .
+aek:VehicleShape a sh:NodeShape ; sh:targetClass aek:VehicleVariant ;
+ sh:property [ sh:path rdfs:label ; sh:minCount 1 ] ;
+ sh:property [ sh:path aek:powertrain ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:class aek:SourceDocument ] .
+aek:TyreShape a sh:NodeShape ; sh:targetClass aek:TyreVariant ;
+ sh:property [ sh:path rdfs:label ; sh:minCount 1 ] ;
+ sh:property [ sh:path aek:tyreSize ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9]{3}/[0-9]{2} R[0-9]{2}$" ] ;
+ sh:property [ sh:path aek:seasonCategory ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("summer"^^xsd:string "winter"^^xsd:string "all_season"^^xsd:string) ] .
+aek:ObservationShape a sh:NodeShape ; sh:targetClass aek:VehicleObservation, aek:TyreObservation ;
+ sh:property [ sh:path aek:measurementProperty ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:MeasurementProperty ; sh:equals sosa:observedProperty ] ;
+ sh:property [ sh:path aek:measurementContext ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+ sh:property [ sh:path aek:sourcePage ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path aek:sourceLine ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path aek:testProtocol ; sh:class aek:TestProtocol ; sh:maxCount 1 ] ;
+ sh:xone (
+  [ sh:property [ sh:path aek:numericValue ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ; sh:property [ sh:path aek:measurementUnit ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:MeasurementUnit ] ; sh:property [ sh:path aek:textValue ; sh:maxCount 0 ] ]
+  [ sh:property [ sh:path aek:textValue ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ; sh:property [ sh:path aek:numericValue ; sh:maxCount 0 ] ; sh:property [ sh:path aek:measurementUnit ; sh:maxCount 0 ] ]
+ ) .
+aek:VehicleObservationShape a sh:NodeShape ; sh:targetClass aek:VehicleObservation ;
+ sh:property [ sh:path sosa:hasFeatureOfInterest ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:VehicleVariant ] .
+aek:TyreObservationShape a sh:NodeShape ; sh:targetClass aek:TyreObservation ;
+ sh:property [ sh:path sosa:hasFeatureOfInterest ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:TyreVariant ] ;
+ sh:property [ sh:path aek:sourcePage ; sh:minCount 1 ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:qualifiedValueShape [ sh:class aek:TyreSourceRecord ] ; sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ] .
+aek:TyreRecordShape a sh:NodeShape ; sh:targetClass aek:TyreSourceRecord ;
+ sh:property [ sh:path sosa:hasFeatureOfInterest ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:TyreVariant ] ;
+ sh:property [ sh:path aek:sourcePage ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:SourceDocument ] .
+aek:AlignmentShape a sh:NodeShape ; sh:targetClass aek:AlignmentCandidate ;
+ sh:property [ sh:path aek:candidateVehicle ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:VehicleVariant ] ;
+ sh:property [ sh:path aek:candidateTyre ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:TyreVariant ] ;
+ sh:property [ sh:path aek:matchType ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("model_size_match"^^xsd:string "model_only"^^xsd:string "dimension_only"^^xsd:string) ] ;
+ sh:property [ sh:path aek:identityVerified ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ; sh:hasValue false ] ;
+ sh:property [ sh:path aek:fitmentVerified ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ; sh:hasValue false ] .
+aek:AliasShape a sh:NodeShape ; sh:targetClass aek:TyreAliasCandidate ;
+ sh:property [ sh:path aek:aliasSourceTyre ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:TyreVariant ; sh:disjoint aek:aliasTargetTyre ] ;
+ sh:property [ sh:path aek:aliasTargetTyre ; sh:minCount 1 ; sh:maxCount 1 ; sh:class aek:TyreVariant ] ;
+ sh:property [ sh:path aek:reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "manual_review"^^xsd:string ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 2 ; sh:maxCount 2 ; sh:class aek:TyreSourceRecord ] .
+aek:SourceShape a sh:NodeShape ; sh:targetClass aek:SourceDocument ;
+ sh:property [ sh:path aek:sourceFilename ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] .
