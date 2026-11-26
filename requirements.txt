@@ -28,7 +28,6 @@ matplotlib-inline==0.2.2
 narwhals==2.29.0
 networkx==3.7
 numpy==2.5.5
-onnxruntime==1.32.0
 openpyxl==3.1.5
 owlrl==7.6.2
 packaging==26.4
